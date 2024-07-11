@@ -1,37 +1,31 @@
+// budget.service.ts
+
 import { Injectable } from '@angular/core';
 
-interface BudgetItem {
+export interface BudgetItem {
   id: number;
   description: string;
   amount: number;
-  timestamp: number; // Adjusted to use number for timestamp
+  datetime: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class BudgetService {
-  budgetItems: BudgetItem[] = [];
+  private budgetItems: BudgetItem[] = [];
 
   constructor() {
     const savedItems = localStorage.getItem('budgetItems');
-    if (savedItems) {
-      this.budgetItems = JSON.parse(savedItems);
-    }
+    this.budgetItems = savedItems ? JSON.parse(savedItems) : [];
   }
 
   getItems(): BudgetItem[] {
     return this.budgetItems;
   }
 
-  addItem(description: string, amount: number, timestamp: number): void {
-    const newItem: BudgetItem = {
-      id: Date.now(),
-      description,
-      amount,
-      timestamp
-    };
-    this.budgetItems.push(newItem);
+  addItem(item: BudgetItem): void {
+    this.budgetItems.push(item);
     this.saveToLocalStorage();
   }
 
@@ -44,7 +38,7 @@ export class BudgetService {
     return this.budgetItems.reduce((total, item) => total + item.amount, 0);
   }
 
-  saveToLocalStorage(): void {
+  private saveToLocalStorage(): void {
     localStorage.setItem('budgetItems', JSON.stringify(this.budgetItems));
   }
 }
