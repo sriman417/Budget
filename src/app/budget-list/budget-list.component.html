@@ -1,13 +1,9 @@
-<div class="card">
-  <div class="card-body">
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let item of budgetItems">
-        <div>
-          <span class="item-description">{{ item.description }}</span>
-          <span class="item-amount">{{ item.amount | currency }}</span>
-        </div>
-        <button type="button" class="btn-remove" (click)="removeItem(item.id)">Remove</button>
-      </li>
-    </ul>
-  </div>
+<!-- budget-list.component.html -->
+<div *ngFor="let item of budgetItems" class="budget-item">
+  <div class="item">
+  <span class="item-description">{{ item.description }}</span>
+  <span class="item-amount">{{ item.amount | currency }}</span>
+  <span class="item-datetime">{{ item.datetime }}</span>
+  <button class="btn-remove" (click)="removeItem(item.id)">Remove</button>
+</div>
 </div>
