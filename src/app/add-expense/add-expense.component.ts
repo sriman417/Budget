@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BudgetService } from '../budget.service';
+import { BudgetService, BudgetItem } from '../budget.service';
 
 @Component({
   selector: 'app-add-expense',
@@ -9,6 +9,7 @@ import { BudgetService } from '../budget.service';
 export class AddExpenseComponent {
   description = '';
   amount = 0;
+  datetime: string = '';
   budgetService: BudgetService;
 
   constructor(budgetService: BudgetService) {
@@ -17,11 +18,16 @@ export class AddExpenseComponent {
 
   addExpense() {
     if (this.description && this.amount) {
-      const currentDate = new Date(); // Get current date and time
-      const timestamp = currentDate.getTime(); // Get timestamp from current date
-      this.budgetService.addItem(this.description, this.amount, timestamp);
+      const newItem: BudgetItem = {
+        id: Date.now(),
+        description: this.description,
+        amount: this.amount,
+        datetime: this.datetime
+      };
+      this.budgetService.addItem(newItem);
       this.description = '';
       this.amount = 0;
+      this.datetime = '';
     }
   }
 }
