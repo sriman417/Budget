@@ -1,8 +1,9 @@
+<!-- add-expense.component.html -->
+
 <div class="add-expense">
   <div class="card-body">
-    <!-- Your form elements here -->
+    <h5 class="card-title">Add Expense</h5>
     <form (submit)="addExpense()">
-      <!-- Form fields for description and amount -->
       <div class="form-group">
         <label for="description">Description</label>
         <input type="text" class="form-control" id="description" name="description" [(ngModel)]="description">
@@ -11,13 +12,10 @@
         <label for="amount">Amount</label>
         <input type="number" class="form-control" id="amount" name="amount" [(ngModel)]="amount">
       </div>
-      <mat-form-field>
-        <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>      
+      <div class="form-group">
+        <label for="datetime">Date and Time</label>
+        <input type="datetime-local" class="form-control" id="datetime" name="datetime" [(ngModel)]="datetime">
+      </div>
       <button type="submit" class="btn btn-primary">Add Expense</button>
     </form>
   </div>
