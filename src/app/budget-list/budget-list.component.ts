@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { BudgetService } from '../budget.service';
 
 interface BudgetItem {
+datetime: any;
   id: number;
   description: string;
   amount: number;
-  timestamp: number; // Adjusted to use number for timestamp
 }
 
 @Component({
@@ -15,7 +15,7 @@ interface BudgetItem {
 })
 export class BudgetListComponent implements OnInit {
   budgetItems: BudgetItem[] = [];
-  budgetService: BudgetService; // Removed private or public keyword
+  budgetService: BudgetService;
 
   constructor(budgetService: BudgetService) {
     this.budgetService = budgetService;
