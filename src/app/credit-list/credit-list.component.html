@@ -1,0 +1,8 @@
+<div *ngFor="let item of creditItems" class="credit-item">
+    <div class="item">
+      <span class="item-amount">{{ item.amount | currency }}</span><br>
+      <span class="item-recurrence">{{ item.recurrenceType }}</span><br>
+      <button class="btn-remove" (click)="removeCredit(item.id)">Remove</button>
+    </div>
+  </div>
+  
