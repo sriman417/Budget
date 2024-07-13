@@ -7,7 +7,9 @@ import { BudgetService } from '../budget.service';
   styleUrls: ['./summary.component.css']
 })
 export class SummaryComponent implements OnInit {
-  totalAmount = 0;
+  totalExpenses = 0;
+  totalCredit = 0;
+  savings = 0;
   budgetService: BudgetService;
 
   constructor(budgetService: BudgetService) {
@@ -15,6 +17,8 @@ export class SummaryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.totalAmount = this.budgetService.getTotalAmount();
+    this.totalExpenses = this.budgetService.getTotalAmount();
+    this.totalCredit = this.budgetService.getTotalCredit();
+    this.savings = this.totalCredit - this.totalExpenses;
   }
 }
