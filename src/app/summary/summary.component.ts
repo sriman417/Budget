@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BudgetService } from '../budget.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-summary',
@@ -12,13 +13,17 @@ export class SummaryComponent implements OnInit {
   savings = 0;
   budgetService: BudgetService;
 
-  constructor(budgetService: BudgetService) {
+  constructor(budgetService: BudgetService, private router: Router) {
     this.budgetService = budgetService;
   }
-
+  
   ngOnInit(): void {
     this.totalExpenses = this.budgetService.getTotalAmount();
     this.totalCredit = this.budgetService.getTotalCredit();
     this.savings = this.totalCredit - this.totalExpenses;
+  }
+
+  goBack(): void {
+    this.router.navigate(['/']);
   }
 }
