@@ -1,33 +1,39 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
+import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AddExpenseComponent } from './add-expense/add-expense.component';
 import { BudgetListComponent } from './budget-list/budget-list.component';
 import { SummaryComponent } from './summary/summary.component';
 import { BudgetService } from './budget.service';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { CreditComponent } from './credit/credit.component';
+import { CreditListComponent } from './credit-list/credit-list.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { FirstComponent } from './first/first.component';
+
+const routes: Routes = [
+  { path: '', component: FirstComponent },
+  { path: 'summary', component: SummaryComponent }
+];
+
 @NgModule({
   declarations: [
     AppComponent,
     AddExpenseComponent,
     BudgetListComponent,
-    SummaryComponent
+    SummaryComponent,
+    CreditComponent,
+    CreditListComponent,
+    FirstComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    MatDatepickerModule,
-    MatInputModule,
-    MatNativeDateModule,
-    MatFormFieldModule
+    AgGridModule,
+    RouterModule.forRoot(routes)
   ],
-  providers: [BudgetService, provideAnimationsAsync()],
+  providers: [BudgetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
